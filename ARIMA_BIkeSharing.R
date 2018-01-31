@@ -5,7 +5,7 @@ library(ggplot2)
 library(forecast)
 library(tseries)
 
-setwd("D:/Forecast_R")
+setwd("C:/Forecast_R")
 
 daily_data = read.csv('day.csv', header=TRUE, stringsAsFactors=FALSE)
 
@@ -148,16 +148,20 @@ auto.arima(deseasonal_cnt, seasonal=FALSE)
 
 
 fit<-auto.arima(deseasonal_cnt, seasonal=FALSE)
-tsdisplay(residuals(fit), lag.max=45, main='(1,1,1) Model Residuals')
+fcast <- forecast(fit)
+plot(fcast)
+
+
 
 # 
 
 
 fit2 = arima(deseasonal_cnt, order=c(1,1,7))
+fcast <- forecast(fit2)
+plot(fcast)
 
-fit2
 
-tsdisplay(residuals(fit2), lag.max=15, main='Seasonal Model Residuals')
+# tsdisplay(residuals(fit2), lag.max=15, main='Seasonal Model Residuals')
 
 
 # Call:
@@ -194,7 +198,7 @@ fit_w_seasonality
 # AIC=9389.17   AICc=9389.29   BIC=9416.68
 
 
-seas_fcast <- forecast(fit_w_seasonality, h=30)
+seas_fcast <- forecast(fit_w_seasonality, h=1000)
 plot(seas_fcast)
 
 

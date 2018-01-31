@@ -27,7 +27,7 @@ ts.plot(AirPassengers,2.718^pred$pred, log = "y", lty = c(1,3))
 library(forecast)
 
 
-setwd("D:/Forecast_R")
+setwd("C:/Forecast_R")
 
 daily_data = read.csv('day.csv', header=TRUE, stringsAsFactors=FALSE)
 
@@ -46,7 +46,7 @@ data <-as.data.frame(AirPassengers)
 plot(data)
 
 
-y=auto.arima(AirPassengers)
+y=auto.arima(data)
 plot(forecast(y,h=30))
-points(1:length(AirPassengers),fitted(y),type="l",col="green")
+
 
